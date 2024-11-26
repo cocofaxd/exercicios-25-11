@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    int opcao;
+
+    do {
+        printf("Selecione uma acao para o robo:\n");
+        printf("1 - Ligar uma lampada\n");
+        printf("2 - Tocar um som\n");
+        printf("3 - Mover um braco\n");
+        printf("0 - Encerrar programa\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                printf("Lampada ligada!\n");
+                break;
+            case 2:
+                printf("Som tocado!\n");
+                break;
+            case 3:
+                printf("Braco movido!\n");
+                break;
+            case 0:
+                printf("Encerrando programa...\n");
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
