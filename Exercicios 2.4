@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int nivel_bateria;
+
+    do {
+        printf("Digite o nivel da bateria (0 a 100): ");
+        scanf("%d", &nivel_bateria);
+
+        if (nivel_bateria < 0 || nivel_bateria > 100) {
+            printf("Nivel de bateria invalido. Tente novamente.\n");
+        } else if (nivel_bateria <= 20) {
+            printf("Aviso: Bateria baixa! Recarregue o robo.\n");
+        } else {
+            printf("Bateria suficiente.\n");
+        }
+    } while (nivel_bateria <= 20);
+
+    printf("Monitoramento encerrado. Nivel de bateria aceitavel.\n");
+
+    return 0;
+}
