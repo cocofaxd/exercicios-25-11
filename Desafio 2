@@ -1,0 +1,195 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Prototipação das funções
+void controleMovimento();
+void leituraSensores();
+void controleAtuacao();
+void monitoramentoBateria();
+void navegacaoAutonoma();
+
+int main() {
+    int opcao;
+
+    do {
+        printf("\n### Menu Principal ###\n");
+        printf("1 - Controle de Movimento\n");
+        printf("2 - Leitura de Sensores de Distancia\n");
+        printf("3 - Controle de Atuacao\n");
+        printf("4 - Monitoramento de Bateria\n");
+        printf("5 - Navegacao Autonoma\n");
+        printf("0 - Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                controleMovimento();
+                break;
+            case 2:
+                leituraSensores();
+                break;
+            case 3:
+                controleAtuacao();
+                break;
+            case 4:
+                monitoramentoBateria();
+                break;
+            case 5:
+                navegacaoAutonoma();
+                break;
+            case 0:
+                printf("Encerrando o programa...\n");
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
+
+// Função Controle de Movimento
+void controleMovimento() {
+    int x = 5, y = 5;
+    char comando;
+
+    printf("Controle de Movimento - Grid 10x10\n");
+    do {
+        printf("Posicao atual: (%d, %d)\n", x, y);
+        printf("W - Cima | S - Baixo | A - Esquerda | D - Direita | X - Sair\n");
+        printf("Comando: ");
+        scanf(" %c", &comando);
+
+        switch (comando) {
+            case 'W':
+            case 'w':
+                if (y > 0) y--;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'S':
+            case 's':
+                if (y < 9) y++;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'A':
+            case 'a':
+                if (x > 0) x--;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'D':
+            case 'd':
+                if (x < 9) x++;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'X':
+            case 'x':
+                printf("Saindo do controle de movimento.\n");
+                break;
+            default:
+                printf("Comando invalido! Tente novamente.\n");
+        }
+    } while (comando != 'X' && comando != 'x');
+}
+
+// Função Leitura de Sensores
+void leituraSensores() {
+    srand(time(0));
+    int distancia = rand() % 101;
+
+    printf("Leitura do sensor de distancia: %d cm\n", distancia);
+    if (distancia < 20)
+        printf("Aviso: Objeto muito proximo!\n");
+    else if (distancia < 50)
+        printf("Objeto a uma distancia media.\n");
+    else
+        printf("Distancia segura.\n");
+}
+
+// Função Controle de Atuação
+void controleAtuacao() {
+    int opcao;
+
+    do {
+        printf("Controle de Atuacao:\n");
+        printf("1 - Ligar Lampada\n");
+        printf("2 - Tocar Som\n");
+        printf("3 - Mover Braco\n");
+        printf("0 - Voltar ao menu principal\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                printf("Lampada ligada!\n");
+                break;
+            case 2:
+                printf("Som tocado!\n");
+                break;
+            case 3:
+                printf("Braco movido!\n");
+                break;
+            case 0:
+                printf("Retornando ao menu principal...\n");
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
+    } while (opcao != 0);
+}
+
+// Função Monitoramento de Bateria
+void monitoramentoBateria() {
+    srand(time(0));
+    int bateria = rand() % 101;
+
+    printf("Nivel atual da bateria: %d%%\n", bateria);
+    if (bateria <= 20)
+        printf("Aviso: Bateria baixa! Recarregue o robo.\n");
+    else
+        printf("Bateria em nivel aceitavel.\n");
+}
+
+// Função Navegação Autônoma
+void navegacaoAutonoma() {
+    int x = 2, y = 2;
+    char comando;
+
+    printf("Navegacao Autonoma - Grid 5x5\n");
+    do {
+        printf("Posicao atual: (%d, %d)\n", x, y);
+        printf("W - Cima | S - Baixo | A - Esquerda | D - Direita | X - Sair\n");
+        printf("Comando: ");
+        scanf(" %c", &comando);
+
+        switch (comando) {
+            case 'W':
+            case 'w':
+                if (y > 0) y--;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'S':
+            case 's':
+                if (y < 4) y++;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'A':
+            case 'a':
+                if (x > 0) x--;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'D':
+            case 'd':
+                if (x < 4) x++;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'X':
+            case 'x':
+                printf("Saindo da navegacao autonoma.\n");
+                break;
+            default:
+                printf("Comando invalido! Tente novamente.\n");
+        }
+    } while (comando != 'X' && comando != 'x');
+}
