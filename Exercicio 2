@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    float combustivel;
+
+    printf("Insira o nível de combustível inicial (em %%): ");
+    scanf("%f", &combustivel);
+
+    while (combustivel < 100.0) {
+        if (combustivel < 15.0) {
+            printf("ALERTA: Nível de combustível baixo (%.2f%%). Recarregue o veículo!\n", combustivel);
+        } else {
+            printf("Nível de combustível: %.2f%%. Dentro do limite seguro.\n", combustivel);
+        }
+
+        printf("Atualize o nível de combustível (em %%): ");
+        scanf("%f", &combustivel);
+
+        sleep(1);
+    }
+
+    printf("Tanque cheio! (%.2f%%)\n", combustivel);
+
+    return 0;
+}
