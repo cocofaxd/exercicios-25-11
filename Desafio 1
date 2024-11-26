@@ -1,1 +1,60 @@
+#include <stdio.h>
+#include <math.h>
 
+void calcular_media_e_desvio(double precos[], int dias, double *media, double *desvio_padrao) {
+    double soma = 0.0, variancia = 0.0;
+    for (int i = 0; i < dias; i++) {
+        soma += precos[i];
+    }
+    *media = soma / dias;
+
+    for (int i = 0; i < dias; i++) {
+        variancia += pow(precos[i] - *media, 2);
+    }
+    *desvio_padrao = sqrt(variancia / dias);
+}
+
+int main() {
+    int dias;
+    char opcao;
+
+    do {
+        printf("Informe o número de dias para análise: ");
+        scanf("%d", &dias);
+
+        if (dias <= 0) {
+            printf("O número de dias deve ser maior que zero.\n");
+            continue;
+        }
+
+        double precos[dias];
+        for (int i = 0; i < dias; i++) {
+            printf("Informe o preço da ação no dia %d: ", i + 1);
+            scanf("%lf", &precos[i]);
+            if (precos[i] <= 0) {
+                printf("O preço deve ser maior que zero. Recomece o processo.\n");
+                return 1;
+            }
+        }
+
+        double media, desvio_padrao;
+        calcular_media_e_desvio(precos, dias, &media, &desvio_padrao);
+
+        double percentual_desvio = (desvio_padrao / media) * 100;
+
+        printf("\nMédia: %.2lf\n", media);
+        printf("Desvio Padrão: %.2lf\n", desvio_padrao);
+        if (percentual_desvio < 5.0) {
+            printf("Desempenho: Estável\n");
+        } else {
+            printf("Desempenho: Volátil\n");
+        }
+
+        printf("\nDeseja realizar outra análise? (s/n): ");
+        scanf(" %c", &opcao);
+
+    } while (opcao == 's' || opcao == 'S');
+
+    printf("Programa encerrado.\n");
+    return 0;
+}
