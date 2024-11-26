@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main() {
+    int x = 2, y = 2;
+    char comando;
+
+    do {
+        printf("Posicao atual do robo: (%d, %d)\n", x, y);
+        printf("Comandos:\n");
+        printf("W - Mover para cima\n");
+        printf("S - Mover para baixo\n");
+        printf("A - Mover para esquerda\n");
+        printf("D - Mover para direita\n");
+        printf("X - Parar\n");
+        printf("Digite o comando: ");
+        scanf(" %c", &comando);
+
+        switch (comando) {
+            case 'W':
+            case 'w':
+                if (y > 0) y--;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'S':
+            case 's':
+                if (y < 4) y++;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'A':
+            case 'a':
+                if (x > 0) x--;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'D':
+            case 'd':
+                if (x < 4) x++;
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'X':
+            case 'x':
+                printf("Parando o robo.\n");
+                break;
+            default:
+                printf("Comando invalido. Tente novamente.\n");
+        }
+    } while (comando != 'X' && comando != 'x');
+
+    printf("Simulacao encerrada. Posicao final do robo: (%d, %d)\n", x, y);
+    return 0;
+}
